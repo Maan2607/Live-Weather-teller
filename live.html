@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .bod {
+            background-image: url('https://pics.freeartbackgrounds.com/fullhd/Autumn_Road_Background-1136.jpg');
+            background-size: 100% 680px;
+            background-repeat: no-repeat;
+
+        }
+
+        .main {
+            background-color: rgba(0, 0, 0, 0.486);
+            color: white;
+            padding: 20px;
+            width: 20%;
+            margin-top: 17%;
+            position: absolute;
+            right: 40%;
+            height: auto;
+        }
+        .weth{
+            display: none;
+            
+        }
+
+        #se {
+            margin: 10px;
+
+        }
+    </style>
+    <script >
+        let weather = {
+            apikey: "130cf86a585625d4d5505d58ba2238ac",
+
+            featchweather: function (city) {
+                fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.apikey).then((response) => response.json()).then((data)=>this.display(data));
+            },
+            display : function(data){
+                const {name} = data ;
+                const {icon , description}=data.weather[0] ;
+                const { temp , humidity}= data.main ;
+                const{speed} =data.wind ;
+                
+              console.log(name,icon,description,temp,humidity,speed);
+              document.querySelector(".city").innerText= "Weather at "+ name ;
+              document.querySelector('.im').src="http://openweathermap.org/img/wn/"+ icon +".png" ;
+
+              document.querySelector(".des").innerText= description ;
+              document.querySelector(".temp").innerText= "Temprature : "+temp + " C°"   ;
+              document.querySelector(".hum").innerText= "Humidity : " +humidity+"%" ;
+              document.querySelector(".ws").innerText= "Wind Speed : " + speed +"Km/h";
+              document.querySelector(".bod").style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + name+ "')" ;
+            },
+          Search: function(){
+             this.featchweather(document.querySelector("#se").value) ;
+          }, 
+           };
+           document.querySelector("#se").addEventListener("keyup", function(event){
+           if(event.key == "Enter"){
+          weather.Search() ;
+               }
+          });
+         function dis(){
+              document.querySelector(".weth").style.display="block" ;
+         };
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="png" href="https://img.icons8.com/cute-clipart/2x/cloud.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Weather reports</title>
+</head>
+
+<body class="bod">
+    <div class="main">
+        <input type="text" id="se"  placeholder="Search city"> 
+        <button type="submit" class="but" style="border-radius: 30%; cursor: pointer;" onclick="weather.Search();dis()" oncl><i class="fa fa-search" ></i></button>
+        <div class="weth">
+           <div class="city"> <h3>Weather at New Delhi</h3></div>
+<div> <img  class="im" src="http://openweathermap.org/img/wn/10d@2x.png"></div>
+<div class="des"></div>
+            <div class="temp">Temprature : 30&#8451; </div>
+            <div class="hum"> Humidity : 40% </div>
+            <div class="ws">Wind speed : 30 Km/h</div>
+        </div>
+    </div>
+</body>
+
+</html>
