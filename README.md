@@ -1,3 +1,3 @@
 # Live-Weather-teller
-![Screenshot (16)](https://github.com/Maan2607/Live-Weather-teller/assets/101566688/0efb09dd-caab-493c-a15b-9e0dfc982c88)
-![Screenshot (15)](https://github.com/Maan2607/Live-Weather-teller/assets/101566688/169a5f59-ff2e-42b0-bd43-689243965eb6)
+This project uses HTML, CSS and javascript to create a fully functional weather app using an API. We used OpenWeatherMap API in javascript to create a website that that displays the curent weather for any city.
+Using Javascript 'fetch()' it dynamicaly modifies content on the page and background images.
